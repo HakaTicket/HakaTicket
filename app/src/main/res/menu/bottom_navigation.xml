@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_ticket"
+        android:icon="@drawable/invoice"></item>
+    <item android:id="@+id/nav_qrcode"
+        android:icon="@drawable/scan"></item>
+    <item android:id="@+id/nav_account"
+        android:icon="@drawable/account"></item>
+</menu>
