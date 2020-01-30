@@ -14,4 +14,7 @@
     <string name="labelverification">Vérification MDP</string>
     <string name="boutoninscrire">S\'inscrire</string>
     <string name="textecgu">En cochant cette case, je m’engage à respecter les conditions Générales d’utilisation et la politique de confidentialité</string>
+    <string name="mestickets">Mes tickets</string>
+    <string name="scanner">Scanner un qr code</string>
+    <string name="compte">Accéder à mon compte</string>
 </resources>
