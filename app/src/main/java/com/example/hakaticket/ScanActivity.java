@@ -65,7 +65,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_ticket:
-                        startActivity(new Intent(getApplicationContext(), ScanActivity.class));
+                        startActivity(new Intent(getApplicationContext(), HistoryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
