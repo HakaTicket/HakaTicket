@@ -57,7 +57,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_account:
-                        startActivity(new Intent(getApplicationContext(), ScanActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ParameterActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_qrcode:

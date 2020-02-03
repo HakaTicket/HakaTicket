@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".ParameterActivity"></activity>
+        <activity android:name=".HistoryActivity" />
         <activity android:name=".BottomNavigationActivity" />
         <activity android:name=".ScanActivity" />
         <activity android:name=".RegisterActivity" />
