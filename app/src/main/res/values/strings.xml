@@ -8,18 +8,19 @@
     <string name="boutonconnexion">se connecter</string>
     <string name="textbasdepage">Vous n’êtes pas encore inscrits ?</string>
     <string name="lieninscription">Inscrivez-vous ici</string>
-    <string name="titremenuinscription">Inscription</string>
+    <string name="titreMenuInscription">Inscription</string>
     <string name="labelsaisiemail">Adresse mail</string>
     <string name="labelprenom">prénom</string>
     <string name="labelnom">nom</string>
-    <string name="labelverification">Vérification MDP</string>
+    <string name="labelMDP">Mot de passe</string>
+    <string name="labelverification">Vérification mot de passe</string>
     <string name="boutoninscrire">S\'inscrire</string>
     <string name="textecgu">En cochant cette case, je m’engage à respecter les conditions Générales d’utilisation et la politique de confidentialité</string>
     <string name="mestickets">Mes tickets</string>
     <string name="scanner">Scanner un qr code</string>
     <string name="compte">Accéder à mon compte</string>
     <string name="historiqueTitre">Historique</string>
-    <string name="TitreMenuParametre">Paramètres</string>
+    <string name="TitreMenuParametre">Mon Compte</string>
     <string name="boutonDeconnexion">Déconnexion</string>
 
     <string name="group1">Group1</string>

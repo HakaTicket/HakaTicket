@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +16,9 @@ public class ParameterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameter);
+
+        TextView textViewMenuParametre = findViewById(R.id.textMenuConnexion);
+        textViewMenuParametre.setText(R.string.TitreMenuParametre);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.nav_qrcode);

@@ -14,18 +14,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textMenuConnexion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TitreMenuConnexion"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:fontFamily=""
-        app:layout_constraintBottom_toBottomOf="@+id/rectangleDroit"
-        app:layout_constraintEnd_toEndOf="@+id/rectangleDroit"
-        app:layout_constraintStart_toEndOf="@+id/logoOmbre"
-        app:layout_constraintTop_toTopOf="@+id/rectangleDroit"/>
+
+    <include android:id="@+id/headerlogin"
+        layout="@layout/sample_header"/>
+
 
     <TextView
         android:id="@+id/textDescriptionConnexion"

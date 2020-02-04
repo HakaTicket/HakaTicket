@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -44,6 +45,9 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         setupPieChart();
+
+        TextView textViewMenuHisto = findViewById(R.id.textMenuConnexion);
+            textViewMenuHisto.setText(R.string.historiqueTitre);
 
         expandableListView = findViewById(R.id.expandable_listview);
         listGroup = new ArrayList<>();

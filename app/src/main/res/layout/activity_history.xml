@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -7,40 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".HistoryActivity">
 
-    <ImageView
-        android:id="@+id/logoOmbre"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/logo_with_shadow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include android:id="@+id/headerlogin"
+        layout="@layout/sample_header"/>
 
-    <TextView
-        android:id="@+id/textMenuConnexion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/historiqueTitre"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:layout_marginLeft="75dp"
-        android:fontFamily=""
-        app:layout_constraintBottom_toBottomOf="@+id/rectangleDroit"
-        app:layout_constraintEnd_toEndOf="@+id/rectangleDroit"
-        app:layout_constraintStart_toEndOf="@+id/logoOmbre"
-        app:layout_constraintTop_toTopOf="@+id/rectangleDroit"/>
-
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="325dp"
+        android:id="@+id/container_PieChart"
+        android:layout_below="@id/headerlogin">
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/expandable_listview"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/expandable_listview"
+        android:layout_below="@id/headerlogin"/>
+
+    </LinearLayout>
 
     <ExpandableListView
         android:id="@+id/expandable_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomnav" />
+        android:layout_above="@+id/bottomnav"
+        android:layout_below="@id/container_PieChart"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnav"
@@ -56,4 +46,4 @@
         app:menu="@menu/bottom_navigation"
         tools:ignore="MissingConstraints"/>
 
-</LinearLayout>
+</RelativeLayout>

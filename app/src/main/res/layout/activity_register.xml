@@ -6,26 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/logoOmbre"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/logo_with_shadow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textMenuConnexion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titremenuinscription"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:fontFamily=""
-        app:layout_constraintBottom_toBottomOf="@+id/rectangleDroit"
-        app:layout_constraintEnd_toEndOf="@+id/rectangleDroit"
-        app:layout_constraintStart_toEndOf="@+id/logoOmbre"
-        app:layout_constraintTop_toTopOf="@+id/rectangleDroit"></TextView>
+    <include android:id="@+id/headerlogin"
+        layout="@layout/sample_header"/>
 
     <ImageView
         android:id="@+id/rectangleDroit"
