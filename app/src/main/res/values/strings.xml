@@ -6,6 +6,7 @@
     <string name="labelusername">mail/nom d\'utilisateur</string>
     <string name="labelpassword">mot de passe</string>
     <string name="boutonconnexion">se connecter</string>
+    <string name="boutonValider">Confirmer</string>
     <string name="textbasdepage">Vous n’êtes pas encore inscrits ?</string>
     <string name="lieninscription">Inscrivez-vous ici</string>
     <string name="titreMenuInscription">Inscription</string>

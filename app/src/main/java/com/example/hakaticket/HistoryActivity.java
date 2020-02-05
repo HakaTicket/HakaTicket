@@ -38,7 +38,6 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         setupPieChart();
-
         TextView textViewMenuHisto = findViewById(R.id.textMenuConnexion);
             textViewMenuHisto.setText(R.string.historiqueTitre);
 
@@ -71,6 +70,22 @@ public class HistoryActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void setExpListObject() {
+        ArrayList<Ticket> listTicket = new ArrayList(Ticket.getListTicket()) ;
+        //formé listGroup avec les premières infos du ticket
+        //formé listItem avec toute les infos
+        List<String> listGroup;
+        ArrayList<String> listItem = new ArrayList<String>();
+        int i =0;
+        //while (i<=listTicket.length){
+        //boucle pour parcourir la liste des tickets
+        /**
+         * listGroup.add(listTicket[i].numTransac) //ajout des titres des group
+         * reste à créer la chlidlist, avec chaque Item lié au bon ticket
+         */
+        //}
     }
 
     private void initListData() {

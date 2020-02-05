@@ -6,6 +6,7 @@ public class Ticket {
 
     private static ArrayList<Ticket> listTicket;
 
+    private String numTransac;
     private String vendeur;
     private String adresse;
     private String dateAchat;
@@ -18,7 +19,8 @@ public class Ticket {
     private String renduMonnaie;
     private ArrayList<Produit> listProduit;
 
-    public Ticket(String vendeur, String adresse, String dateAchat, String heureAchat, String prixHTC, String prixTTC, String reduction, String moyenPayement, String infoCarte, String renduMonnaie, ArrayList<Produit> listProduit){
+    public Ticket(String numTransac, String vendeur, String adresse, String dateAchat, String heureAchat, String prixHTC, String prixTTC, String reduction, String moyenPayement, String infoCarte, String renduMonnaie, ArrayList<Produit> listProduit){
+        this.numTransac = numTransac;
         this.vendeur = vendeur;
         this.adresse = adresse;
         this.dateAchat = dateAchat;
@@ -35,18 +37,19 @@ public class Ticket {
     public void createTicket(String resultScan) {
         if(resultScan.length() != 0){
             String [] infoTickets = resultScan.split(";");
-            String vendeur = infoTickets[0];
-            String adresse = infoTickets[1];
-            String dateAchat = infoTickets[2];
-            String heureAchat = infoTickets[3];
-            String prixHTC = infoTickets[4];
-            String prixTTC = infoTickets[5];
-            String reduction = infoTickets[6];
-            String moyenPayement = infoTickets[7];
-            String infoCarte = infoTickets[8];
-            String renduMonnaie = infoTickets[9];
+            String numTransac = infoTickets[0];
+            String vendeur = infoTickets[1];
+            String adresse = infoTickets[2];
+            String dateAchat = infoTickets[3];
+            String heureAchat = infoTickets[4];
+            String prixHTC = infoTickets[5];
+            String prixTTC = infoTickets[6];
+            String reduction = infoTickets[7];
+            String moyenPayement = infoTickets[8];
+            String infoCarte = infoTickets[9];
+            String renduMonnaie = infoTickets[10];
             ArrayList<Produit> maListProduit = new ArrayList<Produit>();
-            int i = 10;
+            int i = 11;
             while (i >= infoTickets.length){
                 String [] splitProduit = infoTickets[i].split("|");
                 String leNomProduit = splitProduit[0];
@@ -59,7 +62,7 @@ public class Ticket {
             }
 
 
-            Ticket TicketNouveau = new Ticket(vendeur, adresse, dateAchat, heureAchat, prixHTC, prixTTC, reduction, moyenPayement, infoCarte, renduMonnaie, maListProduit);
+            Ticket TicketNouveau = new Ticket(numTransac, vendeur, adresse, dateAchat, heureAchat, prixHTC, prixTTC, reduction, moyenPayement, infoCarte, renduMonnaie, maListProduit);
             ajouterTicket(TicketNouveau);;
         }
         else {
@@ -69,5 +72,10 @@ public class Ticket {
 
     private static void ajouterTicket(Ticket monTicket){
         listTicket.add(monTicket);
+    }
+
+    public static ArrayList<Ticket> getListTicket(){
+
+        return listTicket;
     }
 }
