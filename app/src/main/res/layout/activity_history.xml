@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scanglobal"
-    tools:context=".ScanActivity">
+    tools:context=".HistoryActivity">
 
     <include android:id="@+id/headerlogin"
         layout="@layout/sample_header"/>
 
-    <me.dm7.barcodescanner.zxing.ZXingScannerView
-        android:id="@+id/scanview"
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="325dp"
+        android:id="@+id/container_PieChart"
+        android:layout_below="@id/headerlogin">
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/expandable_listview"
+        android:layout_below="@id/headerlogin"/>
+
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandable_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/bottomnav"
-        android:layout_below="@+id/headerlogin"
-        />
+        android:layout_below="@id/container_PieChart"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
+        android:scrollingCache="true"
+        android:smoothScrollbar="true"
         app:itemTextColor="@color/black"
         app:itemIconTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation"
         tools:ignore="MissingConstraints"/>
 
-</com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+</RelativeLayout>

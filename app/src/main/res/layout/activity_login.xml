@@ -1,153 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/logoOmbre"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/logo_with_shadow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textMenuConnexion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TitreMenuConnexion"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:fontFamily=""
-        app:layout_constraintBottom_toBottomOf="@+id/rectangleDroit"
-        app:layout_constraintEnd_toEndOf="@+id/rectangleDroit"
-        app:layout_constraintStart_toEndOf="@+id/logoOmbre"
-        app:layout_constraintTop_toTopOf="@+id/rectangleDroit"></TextView>
+    <include android:id="@+id/headerlogin"
+       layout="@layout/sample_header"/>
 
     <TextView
         android:id="@+id/textDescriptionConnexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily=""
-        android:text="@string/TitreDescriptionConnexion"
+        app:fontFamily="@font/fjalla_one"
+        android:text="@string/titredescriptionconnexion"
         android:textColor="@color/black"
         android:textSize="23sp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/containerConnexion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangleDroit"></TextView>
+        android:layout_below="@id/headerlogin"
+        android:layout_marginTop="80dp"
+        />
 
-    <ImageView
-        android:id="@+id/rectangleDroit"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/containerConnexion"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangleDroit"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/textpassword"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rectangledroit"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textusername" />
-
-    <EditText
-        android:id="@+id/textusername"
-        android:background="@drawable/rectangledroit"
-        android:layout_marginTop="60dp"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerConnexion" />
-
-    <TextView
-        android:id="@+id/labelusername"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/labelusername"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/textusername"
-        app:layout_constraintStart_toStartOf="@+id/textusername" />
+        android:layout_below="@id/textDescriptionConnexion"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:id="@+id/layoutsaisieconnexion">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/saisieidentifiantlogin"
+            app:errorEnabled="true"
+            app:counterEnabled="false"
+            app:counterMaxLength="100">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/labelusername" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/labelpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/labelpassword"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/textpassword"
-        app:layout_constraintStart_toStartOf="@+id/textpassword" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/saisiemdplogin"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true"
+            app:counterEnabled="false"
+            app:counterMaxLength="100">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/labelpassword"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/boutonconnexion"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:text="@string/boutonconnexion"
         android:shadowColor="@color/black"
         android:textSize="20sp"
         android:background="@drawable/rectanglearrondi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textpassword" />
+        android:layout_below="@id/layoutsaisieconnexion"
+        android:layout_centerInParent="true"
+        app:fontFamily="@font/fjalla_one" />
 
-    <TextView
-        android:id="@+id/textbasdepage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/inscriptionlinklayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:shadowRadius="@color/black"
-        android:text="@string/textbasdepage"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.31" />
+        android:gravity="top|center_horizontal"
+        android:layout_below="@id/boutonconnexion"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/textbasdepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowRadius="@color/black"
+            android:text="@string/textbasdepage"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:fontFamily="@font/fjalla_one" />
 
-    <TextView
-        android:id="@+id/lieninscription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:shadowRadius="@color/black"
-        android:text="@string/lieninscription"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textbasdepage"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.31" />
+        <TextView
+            android:id="@+id/lieninscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowRadius="@color/black"
+            android:text="@string/lieninscription"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/fjalla_one"
+            android:clickable="true"/>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</RelativeLayout>
 
 
