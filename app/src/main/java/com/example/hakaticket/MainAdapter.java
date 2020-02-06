@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class MainAdapter extends BaseExpandableListAdapter {
 
     Context context;
     List<String> listGroup;
-    HashMap<String,List<String>> listItem;
+    ArrayList<ArrayList<String>> listItem;
 
-    public MainAdapter(Context context, List<String> listGroup, HashMap<String,List<String>> listItem){
+    public MainAdapter(Context context, List<String> listGroup, ArrayList<ArrayList<String>> listItem){
         this.context = context;
         this.listGroup = listGroup;
         this.listItem = listItem;
@@ -29,7 +30,7 @@ public class MainAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listItem.get(this.listGroup.get(groupPosition)).size();
+        return this.listItem.get(groupPosition).size();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class MainAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.listItem.get(this.listGroup.get(groupPosition)).get(childPosition);
+        return this.listItem.get(groupPosition).get(childPosition);
     }
 
     @Override

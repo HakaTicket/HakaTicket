@@ -77,9 +77,10 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result result) {
-        Toast toast = Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT);
-        toast.show();
-        onBackPressed();
+        String resultQR = result.getText().toString();
+        Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+        intent.putExtra("resultQR",resultQR);
+        startActivity(intent);
     }
 
     @Override
