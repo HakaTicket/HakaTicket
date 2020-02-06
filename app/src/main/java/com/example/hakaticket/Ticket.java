@@ -55,7 +55,7 @@ public class Ticket {
             ArrayList<Produit> maListProduit = new ArrayList<Produit>();
             int i = 11;
             while (i < infoTickets.length){
-                String [] splitProduit = infoTickets[i].split("|");
+                String [] splitProduit = infoTickets[i].split("#");
                 Log.d("debug", infoTickets[i]);
                 String leNomProduit = splitProduit[0];
                 String laMarqueProduit = splitProduit[1];

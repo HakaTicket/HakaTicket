@@ -91,8 +91,8 @@ public class HistoryActivity extends AppCompatActivity {
             ArrayList<String> items = new ArrayList<String>();
             String enTete = monTicket.getAdresse()+" - "+monTicket.getHeureAchat()+" - "+monTicket.getPrixHTC()+"€ - "+monTicket.getPrixTTC()+"€ - "+monTicket.getMoyenPayement()+" - "+monTicket.getInfoCarte()+" - "+monTicket.getReduction()+" - "+monTicket.getNumTransac();
             items.add(enTete);
-            for(Produit monProduits : monTicket.getListProduit()){
-                String produit = monProduits.getNomProduit()+ " - " + monProduits.getPrixUnitaireProduit();
+            for(Produit monProduit : monTicket.getListProduit()){
+                String produit = monProduit.getNomProduit()+ " - " + monProduit.getMarqueProduit()+ " - " + monProduit.getPrixUnitaireProduit() + "€ - " + monProduit.getQuantiteProduit() ;
                 items.add(produit);
             }
             listGroup.add(titre);
