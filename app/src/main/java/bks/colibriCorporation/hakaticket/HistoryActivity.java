@@ -86,11 +86,7 @@ public class HistoryActivity extends AppCompatActivity {
             textViewMenuHisto.setText(R.string.historiqueTitre);
 
         expandableListView = findViewById(R.id.expandable_listview);
-        listGroup = new ArrayList<>();
-        listItem = new HashMap<>();
-        adapter = new MainAdapter( this,listGroup,listItem);
         expandableListView.setAdapter(adapter);
-        initListData();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.nav_qrcode);
@@ -133,68 +129,28 @@ public class HistoryActivity extends AppCompatActivity {
         };
     }
 
-
     private void setExpListObject() {
         ArrayList<Ticket> listTicket = new ArrayList(Ticket.getListTicket()) ;
         //formé listGroup avec les premières infos du ticket
         //formé listItem avec toute les infos
-        List<String> listGroup;
-        ArrayList<String> listItem = new ArrayList<String>();
-        int i =0;
-        //while (i<=listTicket.length){
-        //boucle pour parcourir la liste des tickets
-        /**
-         * listGroup.add(listTicket[i].numTransac) //ajout des titres des group
-         * reste à créer la chlidlist, avec chaque Item lié au bon ticket
-         */
-        //}
-    }
+        ArrayList<String> listGroup = new ArrayList<String>();
+        ArrayList<ArrayList<String>> listItem = new ArrayList<ArrayList<String>>();
 
-    private void initListData() {
-        listGroup.add(getString(R.string.group1));
-        listGroup.add(getString(R.string.group2));
-        listGroup.add(getString(R.string.group3));
-        listGroup.add(getString(R.string.group4));
-        listGroup.add(getString(R.string.group5));
-
-        String[] array;
-
-        List<String> list1 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.group1);
-        for(String item : array) {
-            list1.add(item);
+        for(Ticket monTicket : listTicket){
+            //boucle pour parcourir la liste des tickets
+            String titre = monTicket.getDateAchat()+ " - " + monTicket.getVendeur();
+            ArrayList<String> items = new ArrayList<String>();
+            String enTete = monTicket.getAdresse()+" - "+monTicket.getHeureAchat()+" - "+monTicket.getPrixHTC()+"€ - "+monTicket.getPrixTTC()+"€ - "+monTicket.getMoyenPayement()+" - "+monTicket.getInfoCarte()+" - "+monTicket.getReduction()+" - "+monTicket.getNumTransac();
+            items.add(enTete);
+            for(Produit monProduit : monTicket.getListProduit()){
+                String produit = monProduit.getNomProduit()+ " - " + monProduit.getMarqueProduit()+ " - " + monProduit.getPrixUnitaireProduit() + "€ - " + monProduit.getQuantiteProduit() ;
+                items.add(produit);
+            }
+            listGroup.add(titre);
+            listItem.add(items);
         }
-
-        List<String> list2 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.group2);
-        for(String item : array) {
-            list2.add(item);
-        }
-
-        List<String> list3 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.group3);
-        for(String item : array) {
-            list3.add(item);
-        }
-
-        List<String> list4 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.group4);
-        for(String item : array) {
-            list4.add(item);
-        }
-
-        List<String> list5 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.group5);
-        for(String item : array) {
-            list5.add(item);
-        }
-
-        listItem.put(listGroup.get(0),list1);
-        listItem.put(listGroup.get(1),list2);
-        listItem.put(listGroup.get(2),list3);
-        listItem.put(listGroup.get(3),list4);
-        listItem.put(listGroup.get(4),list5);
-        adapter.notifyDataSetChanged();
+        adapter = new MainAdapter( this,listGroup,listItem);
+        expandableListView.setAdapter(adapter);
     }
 
     private void setupPieChart() {

@@ -1,10 +1,13 @@
 package bks.colibriCorporation.hakaticket;
 
+import android.nfc.Tag;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Ticket {
 
-    private static ArrayList<Ticket> listTicket;
+    private static ArrayList<Ticket> listTicket = new ArrayList<Ticket>();
 
     private String numTransac;
     private String vendeur;
@@ -35,7 +38,8 @@ public class Ticket {
     }
 
     public static String createTicket(String resultScan) {
-        if(resultScan.length() != 0 && resultScan.split(";").length >= 11){
+        listTicket = new ArrayList<Ticket>();
+        if(resultScan.length() != 0){
             String [] infoTickets = resultScan.split(";");
             String numTransac = infoTickets[0];
             String vendeur = infoTickets[1];
@@ -50,24 +54,24 @@ public class Ticket {
             String renduMonnaie = infoTickets[10];
             ArrayList<Produit> maListProduit = new ArrayList<Produit>();
             int i = 11;
-            while (i >= infoTickets.length){
-                String [] splitProduit = infoTickets[i].split("|");
+            while (i < infoTickets.length){
+                String [] splitProduit = infoTickets[i].split("#");
+                Log.d("debug", infoTickets[i]);
                 String leNomProduit = splitProduit[0];
                 String laMarqueProduit = splitProduit[1];
                 String laQuantiteeProduit = splitProduit[2];
                 String lePrixUnitaire = splitProduit[3];
                 Produit newProduit = new Produit(leNomProduit, laMarqueProduit, laQuantiteeProduit, lePrixUnitaire);
                 maListProduit.add(newProduit);
+
                 ++i;
             }
-
-
             Ticket TicketNouveau = new Ticket(numTransac, vendeur, adresse, dateAchat, heureAchat, prixHTC, prixTTC, reduction, moyenPayement, infoCarte, renduMonnaie, maListProduit);
-            ajouterTicket(TicketNouveau);;
-            return "Votre ticket a bien été enregistré";
+            ajouterTicket(TicketNouveau);
+            return "Le ticket à été ajouté";
         }
         else {
-            return "Format du qr code invalide";
+            return "Le ticket n'a pas été ajouté";
         }
     }
 
@@ -75,8 +79,57 @@ public class Ticket {
         listTicket.add(monTicket);
     }
 
-    public static ArrayList<Ticket> getListTicket(){
 
+
+    public static ArrayList<Ticket> getListTicket(){
         return listTicket;
+    }
+
+    public String getNumTransac() {
+        return numTransac;
+    }
+
+    public String getVendeur() {
+        return vendeur;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getDateAchat() {
+        return dateAchat;
+    }
+
+    public String getHeureAchat() {
+        return heureAchat;
+    }
+
+    public String getPrixHTC() {
+        return prixHTC;
+    }
+
+    public String getPrixTTC() {
+        return prixTTC;
+    }
+
+    public String getReduction() {
+        return reduction;
+    }
+
+    public String getMoyenPayement() {
+        return moyenPayement;
+    }
+
+    public String getInfoCarte() {
+        return infoCarte;
+    }
+
+    public String getRenduMonnaie() {
+        return renduMonnaie;
+    }
+
+    public ArrayList<Produit> getListProduit() {
+        return listProduit;
     }
 }
