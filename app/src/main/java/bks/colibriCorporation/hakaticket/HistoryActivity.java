@@ -49,6 +49,10 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_history);
+
+        expandableListView = findViewById(R.id.expandable_listview);
 
         Intent intent = getIntent();
         if(intent != null){
@@ -56,10 +60,10 @@ public class HistoryActivity extends AppCompatActivity {
             if(resultintent != null) {
                 String message = Ticket.createTicket(resultintent);
                 Toast.makeText(this.getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                setExpListObject();
             }
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+
         mydb = new DatabaseHelper(this);
         datesaisie = (EditText)findViewById(R.id.tridate);
         categorie = (Spinner)findViewById(R.id.tricateg);
@@ -85,8 +89,7 @@ public class HistoryActivity extends AppCompatActivity {
         TextView textViewMenuHisto = findViewById(R.id.textMenuConnexion);
             textViewMenuHisto.setText(R.string.historiqueTitre);
 
-        expandableListView = findViewById(R.id.expandable_listview);
-        expandableListView.setAdapter(adapter);
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.nav_qrcode);

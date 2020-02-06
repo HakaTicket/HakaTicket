@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "tickets.db";
     public static final String TABLE_NAME_TICKET = "ticket";
@@ -38,8 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_TICKET + "("+COL_0+"INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_1+ "INTEGER, " +COL_2+ "TEXT, " +COL_3+ "TEXT, " +COL_4+ "DATE, " +COL_5+ "DATE, " +COL_6+ "FLOAT, " +COL_7+ "FLOAT, " +COL_8+ "FLOAT, " +COL_9+ "TEXT, " +COL_10+ "TEXT, " +COL_11+ "FLOAT)");
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_PRODUIT + "("+COL_PRODUIT_0+"INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_PRODUIT_1+ "INTEGER, " +COL_PRODUIT_2+ "TEXT, " +COL_PRODUIT_3+ "TEXT, " +COL_PRODUIT_4+ "INTEGER, " +COL_PRODUIT_5+ "FLOAT, FOREIGN KEY("+COL_PRODUIT_1+ ")REFERENCES ticket("+COL_1+"))");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_TICKET + "("+COL_0+"INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_1+ "TEXT, " +COL_2+ "TEXT, " +COL_3+ "TEXT, " +COL_4+ "TEXT, " +COL_5+ "TEXT, " +COL_6+ "TEXT, " +COL_7+ "TEXT, " +COL_8+ "TEXT, " +COL_9+ "TEXT, " +COL_10+ "TEXT, " +COL_11+ "TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_PRODUIT + "("+COL_PRODUIT_0+"INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_PRODUIT_1+ "INTEGER, " +COL_PRODUIT_2+ "TEXT, " +COL_PRODUIT_3+ "TEXT, " +COL_PRODUIT_4+ "TEXT, " +COL_PRODUIT_5+ "INTEGER, FOREIGN KEY("+COL_PRODUIT_1+ ")REFERENCES ticket("+COL_1+"))");
     }
 
     @Override
@@ -49,15 +52,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    /*public boolean insertDataIntoTicket(int numeroTransaction, String name, String surname, String mark){
+    public boolean insertDataIntoTicket(String numeroTransaction, String enseigne, String adresse, String dateAchat, String heureAchat, String prixHTC, String prixTTC, String reduction,  String moyenPayment, String infocarte, String renduMonnaie){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(,);
+        contentValues.put(COL_1, numeroTransaction);
+        contentValues.put(COL_2, enseigne);
+        contentValues.put(COL_3, adresse);
+        contentValues.put(COL_4, dateAchat);
+        contentValues.put(COL_5, heureAchat);
+        contentValues.put(COL_6, prixHTC);
+        contentValues.put(COL_7, prixTTC);
+        contentValues.put(COL_8, reduction);
+        contentValues.put(COL_9, moyenPayment);
+        contentValues.put(COL_10, infocarte);
+        contentValues.put(COL_11, renduMonnaie);
+        long result = db.insert(TABLE_NAME_TICKET,null,contentValues);
+        return result != -1;
     }
 
-    public boolean insertDataInto(String name, String surname, String mark){
+    public boolean insertDataInto(int idTicket, String nomProduit, String marqueProduit, String quantiteProduit, String prixUnitaireProduit){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,);
-    }*/
+        contentValues.put(COL_PRODUIT_1, idTicket);
+        contentValues.put(COL_PRODUIT_2, nomProduit);
+        contentValues.put(COL_PRODUIT_3, marqueProduit);
+        contentValues.put(COL_PRODUIT_4, quantiteProduit);
+        contentValues.put(COL_PRODUIT_5, prixUnitaireProduit);
+        long result = db.insert(TABLE_NAME_PRODUIT,null,contentValues);
+        return result != -1;
+    }
+
+    
+
 }
