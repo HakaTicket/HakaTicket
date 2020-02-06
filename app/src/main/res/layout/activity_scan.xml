@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scanglobal"
-    tools:context=".ScanActivity">
+    tools:context="bks.colibriCorporation.hakaticket.ScanActivity">
+
+    <include android:id="@+id/headerlogin"
+        layout="@layout/sample_header"/>
 
     <me.dm7.barcodescanner.zxing.ZXingScannerView
         android:id="@+id/scanview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomnav"
+        android:layout_below="@+id/headerlogin"
         />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnav"
@@ -21,7 +25,6 @@
         android:layout_alignParentBottom="true"
         app:itemTextColor="@color/black"
         app:itemIconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation"
         tools:ignore="MissingConstraints"/>
 

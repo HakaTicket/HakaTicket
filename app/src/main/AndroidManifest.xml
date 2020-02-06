@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hakaticket">
+    android:windowSoftInputMode="stateHidden"
+    package="bks.colibriCorporation.hakaticket">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.Camera"/>
-    <uses-feature android:name="android.hardware.Camera.autofocus"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.Camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -13,12 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BottomNavigationActivity"></activity>
-        <activity android:name=".ScanActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
+        <activity android:name="bks.colibriCorporation.hakaticket.CGUActivity"></activity>
+        <activity android:name="bks.colibriCorporation.hakaticket.BottomNavigationActivity" />
+        <activity android:name="bks.colibriCorporation.hakaticket.LoginActivity" />
+        <activity android:name="bks.colibriCorporation.hakaticket.RegisterActivity" />
+        <activity android:name="bks.colibriCorporation.hakaticket.ParameterActivity"/>
+        <activity android:name="bks.colibriCorporation.hakaticket.HistoryActivity"/>
+        <activity android:name="bks.colibriCorporation.hakaticket.ScanActivity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

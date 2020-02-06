@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/logoOmbre"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo_png_transparent" />
+
+    <TextView
+        android:id="@+id/textMenuConnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textAlignment="center"
+        android:layout_toEndOf="@+id/logoOmbre"
+        android:layout_toRightOf="@+id/logoOmbre"
+        android:fontFamily="@font/fjalla_one"
+        android:text="@string/titremenuconnexion"
+        android:textColor="@color/black"
+        android:textSize="50sp" />
+</RelativeLayout>
