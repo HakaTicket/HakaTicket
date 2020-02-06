@@ -1,4 +1,4 @@
-package com.example.hakaticket;
+package com.colibriCorporation.hakaticket;
 
 import org.junit.Test;
 

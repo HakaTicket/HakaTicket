@@ -1,19 +1,16 @@
-package com.example.hakaticket;
+package bks.colibriCorporation.hakaticket;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import bks.colibriCorporation.hakaticket.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
@@ -85,7 +82,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result result) {
-        String resultQR = result.getText();
+        String resultQR = result.getText().toString();
         Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
         intent.putExtra("resultQR",resultQR);
         startActivity(intent);

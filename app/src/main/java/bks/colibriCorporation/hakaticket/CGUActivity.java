@@ -1,4 +1,4 @@
-package com.example.hakaticket;
+package bks.colibriCorporation.hakaticket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import bks.colibriCorporation.hakaticket.R;
 
 public class CGUActivity extends AppCompatActivity {
 

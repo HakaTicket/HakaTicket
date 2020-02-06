@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scanglobal"
-    tools:context=".ScanActivity">
+    tools:context="bks.colibriCorporation.hakaticket.ScanActivity">
 
     <include android:id="@+id/headerlogin"
         layout="@layout/sample_header"/>

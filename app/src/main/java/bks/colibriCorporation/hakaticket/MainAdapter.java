@@ -1,4 +1,4 @@
-package com.example.hakaticket;
+package bks.colibriCorporation.hakaticket;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import bks.colibriCorporation.hakaticket.R;
 
 import java.util.HashMap;
 import java.util.List;

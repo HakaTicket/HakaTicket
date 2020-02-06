@@ -7,7 +7,7 @@
         android:id="@+id/logoOmbre"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/logo_with_shadow" />
+        android:src="@drawable/logo_png_transparent" />
 
     <TextView
         android:id="@+id/textMenuConnexion"

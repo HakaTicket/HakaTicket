@@ -34,7 +34,7 @@
     <string name="group3">Group3</string>
     <string name="group4">Group4</string>
     <string name="group5">Group5</string>
-
+    <string name="textdropdowndate">Choisir une date</string>
 
 
     <string-array name="group1">
@@ -65,5 +65,11 @@
         <item>item3</item>
         <item>item4</item>
         <item>item5</item>
+    </string-array>
+
+
+    <string-array name="type">
+        <item>carte bleu</item>
+        <item>especes</item>
     </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.hakaticket;
+package bks.colibriCorporation.hakaticket;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,26 +14,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import bks.colibriCorporation.hakaticket.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.validation.Validator;
-
 public class ParameterActivity extends AppCompatActivity {
 
     private Button btn_deco, btn_update;
     private TextInputLayout til_prenom,til_nom,til_email,til_password,til_password2;
-    private String url;
-    private Validator v;
+    private final String url="http://hugosimon.fr/bddupdate.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +44,25 @@ public class ParameterActivity extends AppCompatActivity {
 
         TextView textViewMenuParametre = findViewById(R.id.textMenuConnexion);
         textViewMenuParametre.setText(R.string.TitreMenuParametre);
-        btn_deco = (Button) findViewById(R.id.boutoninscrire);
-        btn_update = (Button) findViewById(R.id.boutoninscrire);
-        til_prenom = (TextInputLayout) findViewById(R.id.saisieprenominscription);
-        til_nom = (TextInputLayout) findViewById(R.id.saisienominscription);
-        til_email = (TextInputLayout) findViewById(R.id.saisiemailinsciption);
-        til_password = (TextInputLayout) findViewById(R.id.saisiemdpinscription);
-        til_password2 = (TextInputLayout) findViewById(R.id.saisieverifmdpinscription);
+        btn_deco = (Button) findViewById(R.id.boutonDeco);
+        btn_update = (Button) findViewById(R.id.boutonConfirmation);
+        til_prenom = (TextInputLayout) findViewById(R.id.inputPrenom);
+        til_nom = (TextInputLayout) findViewById(R.id.inputNom);
+        til_email = (TextInputLayout) findViewById(R.id.inputEmail);
+        til_password = (TextInputLayout) findViewById(R.id.inputMdp1);
+        til_password2 = (TextInputLayout) findViewById(R.id.inputMdp2);
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 infoupdate();
+            }
+        });
+
+        btn_deco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deco();
             }
         });
 
@@ -84,22 +94,22 @@ public class ParameterActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(ParameterActivity.this);
         progressDialog.setTitle("please wait...");
         progressDialog.show();
-        final String oldemail = getPreferences(MODE_PRIVATE).getString("mail", null);
-        final String oldmdp = getPreferences(MODE_PRIVATE).getString("mdp", null);
+        final String oldemail = getPreferences(MODE_PRIVATE).getString("mail","hugosimo1999@gmail.com");
         final String password = til_password.getEditText().getText().toString().trim();
         final String prenom = til_prenom.getEditText().getText().toString().trim();
         final String nom = til_nom.getEditText().getText().toString().trim();
         final String email = til_email.getEditText().getText().toString().trim();
         final String password2 = til_password2.getEditText().getText().toString().trim();
-        if (testerValid(prenom, nom, email, password, password2)) {
+        if(testerValid(prenom, nom, email, password, password2)) {
             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
                 @Override
                 public void onResponse(String response) {
                     if (response.equals("1")) {
                         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
                         preferences.edit().putString("email", email).apply();
                         preferences.edit().putString("mdp", password).apply();
-                        Intent intent = new Intent(getApplicationContext(), ParameterActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ScanActivity.class);
                         startActivity(intent);
                         progressDialog.dismiss();
                     } else {
@@ -110,17 +120,32 @@ public class ParameterActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(ParameterActivity.this, "ooooooo", Toast.LENGTH_LONG).show();
+                    if (error instanceof NetworkError) {
+                        Toast.makeText(ParameterActivity.this, "Can't connect to Internet. Please check your connection.", Toast.LENGTH_LONG).show();
+                    }
+                    else if (error instanceof ServerError) {
+                        Toast.makeText(ParameterActivity.this, "Unable to login. Either the username or password is incorrect.", Toast.LENGTH_LONG).show();
+                    }
+                    else if (error instanceof ParseError) {
+                        Toast.makeText(ParameterActivity.this, "Parsing error. Please try again.", Toast.LENGTH_LONG).show();
+                    }
+                    else if (error instanceof NoConnectionError) {
+                        Toast.makeText(ParameterActivity.this, "Can't connect to internet. Please check your connection.", Toast.LENGTH_LONG).show();
+                    }
+                    else if (error instanceof TimeoutError) {
+                        Toast.makeText(ParameterActivity.this, "Connection timed out. Please check your internet connection.", Toast.LENGTH_LONG).show();
+                    }
+                    error.printStackTrace();
+                    progressDialog.dismiss();
                 }
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("mail", email);
+                    params.put("email", email);
                     params.put("password", password);
                     params.put("prenom", prenom);
                     params.put("nom", nom);
-                    params.put("oldmdp", oldmdp);
                     params.put("oldemail", oldemail);
                     return params;
                 }
@@ -131,6 +156,13 @@ public class ParameterActivity extends AppCompatActivity {
             Toast.makeText(ParameterActivity.this, "t'as mal rempli mon gadjo", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
+    }
+
+    public void deco(){
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        preferences.edit().clear().apply();
+        Intent intent = new Intent(getApplicationContext(), ScanActivity.class);
+        startActivity(intent);
     }
 
     boolean testerValid(String prenom, String nom, String mail, String password, String password2) {

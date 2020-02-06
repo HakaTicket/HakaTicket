@@ -1,4 +1,4 @@
-package com.example.hakaticket;
+package bks.colibriCorporation.hakaticket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import bks.colibriCorporation.hakaticket.R;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         String email = getPreferences(MODE_PRIVATE).getString("mail", null);
         String mdp = getPreferences(MODE_PRIVATE).getString("mdp", null);
         if(email != null && !email.isEmpty() && mdp != null && !mdp.isEmpty()) {
-            Intent intent = new Intent(getApplicationContext(), ParameterActivity.class);
+            Toast.makeText(this.getApplicationContext(),"Connexion réussie",Toast.LENGTH_LONG);
+            Intent intent = new Intent(getApplicationContext(), ScanActivity.class);
             startActivity(intent);
         }
 
